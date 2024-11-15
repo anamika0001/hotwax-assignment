@@ -1,0 +1,111 @@
+show databases;
+Create  database assignment;
+use assignment;
+show tables;
+--1Normal form
+ Create table hotwaxcommerce(firstname char(20),lastname char(10),productname char(20),productdescr char(20),product_returnability char(10),seller char(10),order_id int(11) primary key,total int(11),datw int(11),order_status char(10),address char(20));
+
+ desc hotwaxcommerce;
+
+insert into hotwaxcommerce values("john","doe","one plus nord","red mobile phones","no", "seller_z",0001,25000,11-11-2004,"approved",4520110);
+
+ insert into hotwaxcommerce values("john","doe","air_jordans","shoes","yes", "nike",0002,25000,11-11-2004,"approved",4520110);
+
+ insert into hotwaxcommerce values("mary","ann","one plus nord","red mobile phone","no", "seller_z",0003,20000,11-11-2004,"approved",4520120);
+
+select * from hotwaxcommerce;
+
+--secound normal form
+
+CREATE TABLE User (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Address VARCHAR(100)
+);
+
+INSERT INTO User (FirstName, LastName, Address) VALUES
+('John', 'Doe', '452001, Indore, MP'),
+('Mary', 'Ann', '410014, Pune, Maharashtra');
+
+Select * from user;
+
+CREATE TABLE Product (
+    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductName VARCHAR(100),
+    ProductDescription VARCHAR(100),
+    ProductReturnable VARCHAR(3),
+    Seller VARCHAR(50)
+);
+
+INSERT INTO Product (ProductName, ProductDescription, ProductReturnable, Seller) VALUES
+('One Plus Nord', 'Red Mobile Phone', 'No', 'Seller_Z'),
+('Air Jordans', 'Shoes', 'Yes', 'Nike');
+
+Select * from product;
+
+
+CREATE TABLE OrderTable (
+    OrderID VARCHAR(10) PRIMARY KEY,
+    UserID INT,
+    ProductID INT,
+    Total DECIMAL(10, 2),
+    Date DATE,
+    OrderStatus VARCHAR(50),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+INSERT INTO OrderTable (OrderID, UserID, ProductID, Total, Date, OrderStatus) VALUES
+('O1', 1, 1, 20000, '2022-08-15', 'Approved'),
+('O2', 1, 2, 25000, '2020-08-15', 'Approved'),
+('O3', 2, 1, 20000, '2020-08-15', 'Approved');
+
+Select * from ordertable;
+
+--third normal form
+CREATE TABLE User (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Address VARCHAR(100)
+);
+
+INSERT INTO User (FirstName, LastName, Address) VALUES
+('John', 'Doe', '452001, Indore, MP'),
+('Mary', 'Ann', '410014, Pune, Maharashtra');
+Select * from user;
+
+
+CREATE TABLE Product (
+    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductName VARCHAR(100),
+    ProductDescription VARCHAR(100),
+    ProductReturnable VARCHAR(3),
+    Seller VARCHAR(50)
+);
+Select * from product;
+
+INSERT INTO Product (ProductName, ProductDescription, ProductReturnable, Seller) VALUES
+('One Plus Nord', 'Red Mobile Phone', 'No', 'Seller_Z'),
+('Air Jordans', 'Shoes', 'Yes', 'Nike');
+
+
+CREATE TABLE OrderTable (
+    OrderID VARCHAR(10) PRIMARY KEY,
+    UserID INT,
+    ProductID INT,
+    Total DECIMAL(10, 2),
+    Date DATE,
+    OrderStatus VARCHAR(50),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+INSERT INTO OrderTable (OrderID, UserID, ProductID, Total, Date, OrderStatus) VALUES
+('O1', 1, 1, 20000, '2022-08-15', 'Approved'),
+('O2', 1, 2, 25000, '2020-08-15', 'Approved'),
+('O3', 2, 1, 20000, '2020-08-15', 'Approved');
+Select * from ordertable;
+
+
